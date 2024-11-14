@@ -52,6 +52,15 @@ class Instance:
             constraints
         ), "Some constraints have a type that isn't parsed"
 
+    def get_shop(self, shop_name):
+        query = [shop for shop in self.shops if shop["name"] == shop_name]
+        if len(query) == 1:
+            return query[0]
+        else:
+            raise ValueError(
+                f"Shop {shop_name} not found in instance {self.instance} or found multiple times"
+            )
+
 
 if __name__ == "__main__":
     instance_ex = Instance("tiny")
